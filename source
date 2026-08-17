@@ -1,0 +1,766 @@
+title Pulse
+author Aiden Kranz
+homepage www.puzzlescript.net
+realtime_interval 0.5
+again_interval 0.01
+run_rules_on_level_start
+noundo
+========
+OBJECTS
+========
+
+Marker
+transparent
+
+Movetag
+pink
+.....
+..0..
+.0.0.
+..0..
+.....
+
+toggletag
+red
+.....
+.....
+..0..
+.....
+.....
+
+T0
+transparent
+
+T1
+transparent
+
+T2
+transparent
+
+T3
+transparent
+
+T4
+transparent
+
+
+againflag
+transparent
+
+againflag1
+transparent
+
+Reflected
+transparent
+
+noBlocks
+gray
+.0..0
+0..0.
+..0.0
+.0.0.
+0.0..
+
+
+MirrorF
+white
+....0
+...0.
+..0..
+.0...
+0....
+
+MirrorB
+white
+0....
+.0...
+..0..
+...0.
+....0
+
+MirrorToggle
+#555
+0...0
+.0.0.
+..0..
+.0.0.
+0...0
+
+TargetBack
+#222
+
+Target
+darkgreen
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Happy
+transparent
+
+
+A0
+white
+.....
+.00..
+.....
+.....
+.....
+A1
+white
+.....
+.000.
+...0.
+.....
+.....
+A2
+white
+.....
+.000.
+...0.
+..00.
+.....
+A3
+white
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Red
+transparent
+
+Green
+transparent
+
+Blue
+transparent
+
+Cyan
+#00FFFF
+.....
+..0..
+.000.
+..0..
+.....
+
+Magenta
+#FF00FF
+.....
+..0..
+.000.
+..0..
+.....
+
+Yellow
+#FFFF00
+.....
+..0..
+.000.
+..0..
+.....
+
+_Red
+#FF0000
+.....
+.....
+..0..
+.....
+.....
+
+_Green
+#00FF00
+.....
+.....
+..0..
+.....
+.....
+
+_Blue
+#0000FF
+.....
+.....
+..0..
+.....
+.....
+
+_Cyan
+#00FFFF
+.....
+.....
+..0..
+.....
+.....
+
+_Magenta
+#FF00FF
+.....
+.....
+..0..
+.....
+.....
+
+_Yellow
+#FFFF00
+.....
+.....
+..0..
+.....
+.....
+
+TopRed
+#FF0000
+.....
+..0..
+.000.
+..0..
+.....
+
+TopGreen
+#00FF00
+.....
+..0..
+.000.
+..0..
+.....
+
+TopBlue
+#0000FF
+.....
+..0..
+.000.
+..0..
+.....
+
+
+Wall
+#222
+
+Wall_U
+#555
+00000
+.....
+.....
+.....
+.....
+
+Wall_L
+#555
+0....
+0....
+0....
+0....
+0....
+
+Wall_R
+#555
+....0
+....0
+....0
+....0
+....0
+
+Wall_D
+#555
+.....
+.....
+.....
+.....
+00000
+
+
+Background
+#777
+
+Source
+#222
+
+moveR
+transparent
+moveU
+transparent
+moveD
+transparent
+moveL
+transparent
+_R
+#222 #777
+....1
+...11
+..111
+...11
+....1
+_D
+#222 #777
+.....
+.....
+..1..
+.111.
+11111
+_L
+#222 #777
+1....
+11...
+111..
+11...
+1....
+_U
+#222 #777
+11111
+.111.
+..1..
+.....
+.....
+
+drawBlip
+transparent
+
+Blip
+transparent
+
+Player
+black
+00.00
+0...0
+.....
+0...0
+00.00
+
+Player1
+#bbb
+00.00
+0...0
+.....
+0...0
+00.00
+
+Crate
+white
+00000
+0...0
+0...0
+0...0
+00000
+
+newBlip
+transparent
+
+actionflag
+transparent
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+* = Crate and Movetag
+x = noBlocks
+/ = MirrorF and toggletag
+\ = MirrorB and Movetag
+a = MirrorF and toggletag and Movetag
+g = MirrorF
+h = MirrorB
+j = MirrorF and Movetag
+
+O = Target and _Red
+i = Target and _Green
+k = Target and _Blue
+& = Target and _Red and _blue
+@ = Target and _Red and _Green
+q = Source and _red and _R and T4
+1 = Source and _Green and _D and T4
+6 = Source and _Green and _R and T4
+2 = Source and _Blue and _D and T4
+4 = Source and _Blue and _R and T4
+5 = Source and _Blue and _L and T4
+3 = Source and _red and _U and T4
+7 = Source and _red and _Green and _L and T4
+8 = Source and _red and _Green and _R and T4
+y = MirrorToggle and MirrorF
+u = MirrorToggle and MirrorF and Movetag
+T = T0 or T1 or T2 or T3 or T4
+dirH = moveR or moveL
+DirV = moveU or moveD
+Dir = dirh or dirv
+_Dir = _D or _R or _L or _U
+Opaque = Wall or Source or Crate
+ReflectNE = MirrorB
+ReflectNW = MirrorF
+ReflectSW = MirrorB
+ReflectSE = MirrorF
+Mirror = MirrorF or MirrorB
+Solid = Source or Crate or Mirror or Target or MirrorToggle
+Primary = Red or Green or Blue
+Secondary = Yellow or Cyan or Magenta
+topColor = secondary or TopRed or TopGreen or TopBlue
+Color = primary or secondary
+_Color = _Red or _Green or _Blue or _Yellow or _Cyan or _Magenta
+TargetCounter = A0 or A1 or A2 or A3
+
+=======
+SOUNDS
+=======
+
+Player1 move 5636901
+Player1 create 82764904
+Player1 destroy 14601504
+mirror create 90600309
+startlevel 31150308
+showmessage 78890908
+( Mirror create 59774900 )
+( targetcounter create 4737303 )
+A0 create 14698100
+A1 create 1062900
+A2 create 90830700
+A3 create 76873700 (9022700)
+sfx0 26922102
+sfx1 95953503
+
+
+================
+COLLISIONLAYERS
+================
+
+
+newBlip
+T
+blip
+moveR
+moveL
+moveU
+moveD
+
+Red
+Green
+Blue
+
+Background
+
+TargetBack
+Source
+_R
+_L
+_U
+_D
+Target
+
+noBlocks
+
+
+targetcounter
+drawblip
+Marker
+Wall
+Wall_U
+Wall_L
+Wall_R
+Wall_D
+
+MirrorToggle
+mirror
+crate
+Movetag
+toggletag
+Player
+Player1
+Happy
+
+Reflected
+againflag
+againflag1
+actionflag
+_Red
+_Blue
+_Green
+_Cyan
+_Magenta
+_yellow
+
+topcolor
+======
+RULES
+======
+
+(moving stuff with player)
+[ > Player Player1 movetag solid] -> [ > Player > Player1 > Movetag > solid] 
+[ > Player1 toggletag] -> [ > Player1 > toggletag] 
+[ > Player Player1 solid | solid] -> cancel sfx1
+
+(player did action)
+[action Player][]->[action Player][actionflag]
+[moving Player][] -> [moving Player][actionflag]
+
+(action on movetag)
+[action Player Movetag no Player1] -> [ Player Movetag Player1]
+[action Player Movetag Player1 noBlocks] -> sfx1
+[action Player Movetag Player1 no noBlocks] -> [action Player Movetag]
+
+(action on toggletag)
+[action Player toggletag MirrorF] -> [Player toggletag MirrorB]
+[action Player toggletag MirrorB] -> [action Player toggletag MirrorF]
+
+( source )
+[stationary Player][T0 Source]->[stationary Player][T0 Source Blip newBlip]
+[newBlip _Red] -> 		[newBlip Red _Red]
+[newBlip _Yellow] -> 	[newBlip Yellow _Yellow]
+[newBlip _Green] -> 	[newBlip Green _Green]
+[newBlip _Blue] -> 		[newBlip Blue _Blue]
+[newBlip _Cyan] -> 		[newBlip Cyan _Cyan]
+[newBlip _Magenta] -> 	[newBlip Magenta _Magenta]
+[newBlip _R] -> 		[newBlip moveR _R]
+[newBlip _D] -> 		[newBlip moveD _D]
+[newBlip _L] -> 		[newBlip moveL _L]
+[newBlip _U] -> 		[newBlip moveU _U]
+late [_color no Source no Target] -> []
+late [newBlip] -> []
+
+(movement cancellation)
+late [moveR moveL] -> [ ]
+late [moveU moveD] -> [ ]
+
+(move blip)
+right [stationary Player no actionflag][stationary Blip moveR no againflag]->[stationary Player][Marker > Blip > moveR]
+left  [stationary Player no actionflag][stationary Blip moveL no againflag]->[stationary Player][Marker > Blip > moveL]
+up    [stationary Player no actionflag][stationary Blip moveU againflag no Reflected]->[stationary Player][Marker > Blip > moveU againflag]
+down  [stationary Player no actionflag][stationary Blip moveD againflag no Reflected]->[stationary Player][Marker > Blip > moveD againflag]
+
+(move blip flags)
+[stationary Player no actionflag][> Blip | Marker] -> [stationary Player][> Blip |] 
+[stationary Player no actionflag][> Blip stationary dir]->[stationary Player][> Blip > dir]
+[stationary Player no actionflag][> Blip stationary primary]->[stationary Player][> Blip > primary]
+
+(go again every other update)
+[stationary Player no actionflag][] -> [stationary Player][againflag]
+[stationary Player no actionflag][againflag againflag1] -> [stationary Player][]
+[stationary Player no actionflag][againflag]->[stationary Player][againflag againflag1] again
+
+(delete lonely blips and flags)
+late [no againflag][Blip Dir Opaque no Player1] -> [][opaque]
+late [Marker Blip Dir] -> [] 
+late [Marker Blip] -> [] 
+late [dir no Blip] -> []
+late [color no Blip no againflag] -> []
+late [topcolor no Blip no againflag] -> []
+late [Marker no Blip] -> []
+late [Blip no dir] -> []
+
+
+(reflections)
+late [Blip moveD reflectne no Reflected no Player1 no actionflag no againflag] -> [Blip moveR reflectne Reflected]
+late [Blip moveL reflectne no Reflected no Player1 no actionflag no againflag] -> [Blip moveU reflectne Reflected]
+late [Blip moveR reflectnw no Reflected no Player1 no actionflag no againflag] -> [Blip moveU reflectnw Reflected]
+late [Blip moveD reflectnw no Reflected no Player1 no actionflag no againflag] -> [Blip moveL reflectnw Reflected]
+late [Blip moveU reflectsw no Reflected no Player1 no actionflag no againflag] -> [Blip moveL reflectsw Reflected]
+late [Blip moveR reflectsw no Reflected no Player1 no actionflag no againflag] -> [Blip moveD reflectsw Reflected]
+late [Blip moveL reflectse no Reflected no Player1 no actionflag no againflag] -> [Blip moveD reflectse Reflected]
+late [Blip moveU reflectse no Reflected no Player1 no actionflag no againflag] -> [Blip moveR reflectse Reflected]
+late [MirrorToggle MirrorF Reflected no Player1 no actionflag no againflag] -> [MirrorToggle MirrorB]
+late [MirrorToggle MirrorB Reflected no Player1 no actionflag no againflag] -> [MirrorToggle MirrorF]
+late [no againflag Reflected]->[]
+
+(secondary colors)
+late [red Blue][no againflag] -> [ red Blue Magenta][]
+late [red Green][no againflag] -> [ red Green Yellow][]
+late [Green Blue][no againflag] -> [ Green Blue Cyan][]
+late [red no green no Blue][no againflag] -> [red TopRed][]
+late [no red green no Blue][no againflag] -> [green TopGreen][]
+late [no red no green Blue][no againflag] -> [blue TopBlue][]
+
+(drawBlip)
+late [drawBlip no Blip] -> []
+late [Blip no againflag] -> [Blip drawBlip]
+
+(clock)
+[stationary Player no againflag no actionflag][T3]->[stationary Player][T4]
+[stationary Player no againflag no actionflag][T2]->[stationary Player][T3]
+[stationary Player no againflag no actionflag][T1]->[stationary Player][T2]
+[stationary Player no againflag no actionflag][T0]->[stationary Player][T1]
+[stationary Player no againflag no actionflag][T4]->[stationary Player][T0]
+
+(Target Satisfaction)
+late [no againflag no actionflag][Target] -> [][Target Happy]
+late [no againflag no actionflag][Target _Red no Red] -> [][Target _Red no Happy]
+late [no againflag no actionflag][Target _Green no Green] -> [][Target _Green no Happy]
+late [no againflag no actionflag][Target _Blue no Blue] -> [][Target _Blue no Happy]
+late [no againflag no actionflag][Target Happy] -> [][Target Happy T0]
+late [no againflag no actionflag][target no Happy T0] -> [][Target no targetcounter no t] sfx0
+late [no againflag no actionflag][Target Happy no targetcounter] -> [][Target A0]
+late [no againflag no actionflag][Target Happy A0] -> [][Target A1]
+late [no againflag no actionflag][Target Happy A1] -> [][Target A2]
+late [no againflag no actionflag][Target Happy A2] -> [][Target A3]
+
+late[actionflag]->[]
+
+
+
+(aesthetics)
+[_blue _Green] -> [_blue _Green _Cyan]
+[_red _Green] -> [_red _Green _Yellow]
+[_red _Blue] -> [_red _Blue _Magenta]
+right 	[Target no _R| no Wall] -> [Target _R|] 
+down 	[Target no _D| no Wall] -> [Target _D|] 
+up 		[Target no _U| no Wall] -> [Target _U|] 
+left 	[Target no _L| no Wall] -> [Target _L|] 
+[Target] -> [Target TargetBack]
+right	[Wall| no Wall no Source no Target] -> [Wall Wall_R |]
+down	[Wall| no Wall no Source no Target] -> [Wall Wall_D |]
+up		[Wall| no Wall no Source no Target] -> [Wall Wall_U |]
+left	[Wall| no Wall no Source no Target] -> [Wall Wall_L |]
+
+
+==============
+WINCONDITIONS
+==============
+ 
+all Target on A3
+
+
+=======
+LEVELS
+=======
+
+message mirrors with red dots can be switched
+##.p...
+##.....
+#q../..
+##.....
+####o##
+
+message mirrors with purple diamonds can be moved (press x to pickup a mirror)
+##.p...
+##.....
+#q...\.
+##.....
+####o##
+
+message mirrors with both, can do both
+####o##
+##.....
+#q.ap..
+##.....
+##.....
+
+########
+##....p#
+##.xx..#
+#qxxg..#
+##a.x..#
+##\.x..#
+###o####
+
+###########
+###.......#
+###.#####.#
+###.#.jj#.#
+###.#p.\#.#
+###.#####.#
+q..g......#
+###.#######
+###.#######
+###o#######
+
+##1########
+#....#....#
+#.h.p...g.#
+#aa..#....#
+#aa.###...#
+##.#####.##
+#...###...#
+#....#....#
+#.g.......i
+#....#....#
+###########
+
+#.xxxxxx.#
+#x######x#
+#x#\\jj#x#
+#x######x#
+#.xxxxxxxo
+#...p...x#
+qxxxxxxx.#
+#........#
+
+
+##....##
+##.p..##
+#q..*.o#
+##....##
+##....##
+
+###2#####2###
+###x#x#x#x###
+#4xxxx#xxxx5#
+####xx#xx####
+#...#xxx#...#
+#..p.xxx....#
+q....x.x#...o
+#....xxx....#
+#...#xxx#...#
+#..jxx#xx\..#
+#.jxxx#xxx\.#
+#.xx#x#x#xx.#
+#############
+6.....*.....i
+
+######1####
+#ixxx#....#
+#xx..#....#
+#x.x......#
+#x..xj.p..#
+###.jx....#
+6.....x...#
+#......x..#
+#.......x.#
+#........x#
+###########
+
+message Red + Blue = Magenta
+...........
+###4xxx/...
+.......xp..
+......xxx/.
+.....xxx.x.
+#4xxxxx..x.
+.....x...x.
+.....x...&.
+.....x...#.
+.....3...#.
+.....#...#.
+
+message Red + Green = Yellow
+####1###1
+xxxx.....
+xxxxj....
+.p.jxxxxx
+....xxxxx
+.#..xxxxx
+3#@######
+
+
+#########
+o..y....k
+#xx.xxxx#
+#xxpxxxx#
+#xx.xxxx#
+q..y....5
+#xx*xxxx#
+#########
+
+message Banana Split
+##########
+#...u..h.#
+#...#....#
+#...#....#
+#p.a#..y.@
+#...#....#
+#xxx#..h.#
+8jx\7##@##
+##########
+
+message Thank you for playing!
+message Inspired by SOLAS 128 by Armor Games Studios
