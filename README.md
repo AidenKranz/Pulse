@@ -1,3 +1,3 @@
 # Pulse
 
-<object type="text/html" data="https://raw.githubusercontent.com/AidenKranz/Pulse/refs/heads/main/source" width="100%" height="500px"></object>
+[Play now!](https://htmlpreview.github.io/?https://github.com/AidenKranz/Pulse/blob/main/Pulse.html)
